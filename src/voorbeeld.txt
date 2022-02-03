@@ -1,0 +1,20 @@
+============= Order ============
+
+Datum: 02-02-2022
+Student: Nee
+Aantal tickets: 2
+Prijs: E 20,00
+
+============ Tickets ===========
+
+Premium: Ja
+Film: Lord of the Rings
+Stoelnummer: 13
+Rijnummer: 4
+
+Premium: Nee
+Film: Lord of the Rings
+Stoelnummer: 14
+Rijnummer: 4
+
+================================
