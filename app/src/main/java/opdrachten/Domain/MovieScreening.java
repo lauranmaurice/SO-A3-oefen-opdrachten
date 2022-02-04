@@ -1,4 +1,4 @@
-package Domain;
+package opdrachten.Domain;
 import java.time.LocalDateTime;
 
 public class MovieScreening{

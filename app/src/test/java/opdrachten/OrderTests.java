@@ -1,13 +1,16 @@
+package opdrachten;
+
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.LocalDateTime;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import Domain.Movie;
-import Domain.MovieScreening;
-import Domain.MovieTicket;
-import Domain.Order;
+import opdrachten.Domain.Movie;
+import opdrachten.Domain.MovieScreening;
+import opdrachten.Domain.MovieTicket;
+import opdrachten.Domain.Order;
 
 public class OrderTests {
     /**

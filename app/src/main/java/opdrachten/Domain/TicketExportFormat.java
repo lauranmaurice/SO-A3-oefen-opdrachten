@@ -1,4 +1,4 @@
-package Domain;
+package opdrachten.Domain;
 
 public enum TicketExportFormat {
     JSON,
