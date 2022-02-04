@@ -1,6 +1,8 @@
 # SO-A3-Lauran-Maurice
 Softwareontwerp &amp; Architectuur repository
 
+[![Java CI with Gradle](https://github.com/maurictg/SO-A3-Lauran-Maurice/actions/workflows/gradle.yml/badge.svg?branch=master)](https://github.com/maurictg/SO-A3-Lauran-Maurice/actions/workflows/gradle.yml)
+
 ## Branches en opdrachten
 - Opdracht 1: `opdracht_1`
 - Opdracht 2: `opdracht_2`
