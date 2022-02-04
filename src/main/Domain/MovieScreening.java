@@ -18,6 +18,10 @@ public class MovieScreening{
         return pricePerSeat;
     }
 
+    public LocalDateTime getDateTime() {
+        return this.dateAndTime;
+    }
+
     public String toString(){
         return "Movie: " + movie.getTitle() + "\n Price per seat: $" + pricePerSeat + "\n Date and time: " + dateAndTime;
     }
