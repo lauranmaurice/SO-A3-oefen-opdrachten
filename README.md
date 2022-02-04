@@ -1,6 +1,10 @@
 # SO-A3-Lauran-Maurice
 Softwareontwerp &amp; Architectuur repository
 
+## Branches en opdrachten
+- Opdracht 1: `opdracht_1`
+- Opdracht 2: `opdracht_2`
+
 ## Links
 [Link naar het document](https://docs.google.com/document/d/1Ynhhp8oELJZV1Pk7wOq85NChs4ZdDl8QZIt0omGXL9s/edit?usp=sharing)
 
