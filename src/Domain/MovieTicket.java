@@ -1,7 +1,5 @@
 package Domain;
 
-import java.time.LocalDateTime;
-
 public class MovieTicket{
 
     private MovieScreening movieScreening;
@@ -26,10 +24,6 @@ public class MovieTicket{
 
     public String getMovieName() {
         return this.movieScreening.getMovieName();
-    }
-
-    public LocalDateTime getDateTime() {
-        return this.movieScreening.getDateTime();
     }
 
     public int getRow() {

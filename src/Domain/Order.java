@@ -1,6 +1,5 @@
 package Domain;
 
-import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -27,10 +26,9 @@ public class Order {
     }
 
     public double calculatePrice(){
-        var dateAndTime = this.seatReservations.get(0).getDateTime();
-
-        var day =  dateAndTime.getDayOfWeek();
-        var isWeekend = (day == DayOfWeek.FRIDAY || day == DayOfWeek.SATURDAY || day == DayOfWeek.SUNDAY);
+        var calendar = Calendar.getInstance();
+        var day = calendar.get(Calendar.DAY_OF_WEEK);
+        var isWeekend = (day == Calendar.FRIDAY || day == Calendar.SATURDAY || day == Calendar.SUNDAY);
         var totalPrice = 0; //cents
 
         if (this.isStudentOrder || !isWeekend ) {
