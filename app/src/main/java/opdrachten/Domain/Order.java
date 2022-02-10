@@ -1,14 +1,22 @@
 package opdrachten.Domain;
 
-import java.time.DayOfWeek;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+
+import opdrachten.Strategies.CalculatePriceStrategy;
+import opdrachten.Strategies.ExportJSONStrategy;
+import opdrachten.Strategies.ExportPlainTextStrategy;
+import opdrachten.Strategies.ExportStrategy;
+import opdrachten.Strategies.NotWeekendPriceStrategy;
+import opdrachten.Strategies.StudentPriceStrategy;
+import opdrachten.Strategies.WeekendPriceStrategy;
 
 public class Order {
     private List<MovieTicket> seatReservations;
     private int orderNr;
     private boolean isStudentOrder;
+    private CalculatePriceStrategy priceStrategy;
+
 
     public Order(int orderNr, boolean isStudentOrder) {
         this.orderNr = orderNr;
@@ -20,89 +28,56 @@ public class Order {
         return this.orderNr;
     }
 
+    public boolean getStudentOrder() {
+        return this.isStudentOrder;
+    }
+
     public void addSeatReservation(MovieTicket ticket) {
         this.seatReservations.add(ticket);
+
+        if(this.seatReservations.size() == 1) {
+            if(this.isStudentOrder) {
+                this.priceStrategy = new StudentPriceStrategy();
+            } else {
+                switch (this.seatReservations.get(0).getDateTime().getDayOfWeek()) {
+                    case FRIDAY:
+                    case SATURDAY:
+                    case SUNDAY:
+                        this.priceStrategy = new WeekendPriceStrategy();
+                        break;
+                    default:
+                        this.priceStrategy = new NotWeekendPriceStrategy();
+                        break;
+                }
+            }
+        }
+    }
+
+    public MovieTicket[] getMovieTickets() {
+        var array = new MovieTicket[this.seatReservations.size()];
+        this.seatReservations.toArray(array);
+        return array;
     }
 
     public double calculatePrice(){
-        var dateAndTime = this.seatReservations.get(0).getDateTime();
-
-        var day =  dateAndTime.getDayOfWeek();
-        var isWeekend = (day == DayOfWeek.FRIDAY || day == DayOfWeek.SATURDAY || day == DayOfWeek.SUNDAY);
-        var totalPrice = 0; //cents
-
-        if (this.isStudentOrder || !isWeekend ) {
-            for(var i = 0; i < this.seatReservations.size(); i++) {
-                if (i % 2 == 0) {
-                    var t = this.seatReservations.get(i);
-                    var extra = t.isPremiumTicket() ? (this.isStudentOrder ? 2 : 3) : 0;
-                    totalPrice += Math.round((t.getPrice() + extra) * 100);
-                }
-            }
-        } else {
-            for (var t : this.seatReservations) {
-                var extra = t.isPremiumTicket() ? 3 : 0;
-                totalPrice += Math.round((t.getPrice() + extra) * 100);
-            }
-
-            if (this.seatReservations.size() >= 6) {
-                totalPrice *= 0.9;
-            }
-        }
-
-        return (double)totalPrice / 100;
+        return this.priceStrategy.calculate(this.getMovieTickets());
     }
 
     
     public void export(TicketExportFormat exportFormat){
-        switch (exportFormat){
-            case JSON: {
-                var sb = new StringBuilder();
-                sb.append("{");
-                sb.append("\"order\":{");
-                sb.append("\"nummer\":"+this.orderNr+",");
-                sb.append("\"datum\":\""+LocalDateTime.now()+"\",");
-                sb.append("\"student\":"+(this.isStudentOrder ? "true" : "false")+",");
-                sb.append("\"aantalTickets\":"+this.seatReservations.size()+",");
-                sb.append("\"prijs\":"+this.calculatePrice());
-                sb.append("},");
+        ExportStrategy exportStrategy;
 
-                sb.append("\"tickets\":[");
-                for (var t : this.seatReservations) {
-                    sb.append("{");
-                    sb.append("\"premium\":"+(t.isPremiumTicket() ? "true" : "false")+",");
-                    sb.append("\"film\":\""+t.getMovieName()+"\",");
-                    sb.append("\"stoel\":"+t.getRow()+",");
-                    sb.append("\"rij\":"+t.getSeat());
-                    sb.append("},");
-                }
-                sb.append("]");
-                sb.append("}");
-                System.out.println(sb.toString());
+        switch (exportFormat) {
+            case JSON:
+                exportStrategy = new ExportJSONStrategy();
                 break;
-            }
-            case PLAINTEXT: {
-                var stringBuilder = new StringBuilder();
-                stringBuilder.append(
-                    "============= Order ============ \n" +
-                    "Order nummer: " + orderNr + "\n" +
-                    "Datum: " + LocalDateTime.now() + "\n" + 
-                    "Student: " + isStudentOrder + "\n" +
-                    "Aantal Tickets: " + seatReservations.size() + "\n" +
-                    "Prijs: $" + this.calculatePrice() + "\n" +
-                    "============ Tickets ===========" + "\n"
-                );
 
-                for (MovieTicket movieTicket : seatReservations) {
-                    stringBuilder.append(movieTicket.toString() + "\n");
-                }
-
-                stringBuilder.append("================================");
-                
-                System.out.println(stringBuilder.toString());
+            case PLAINTEXT:
+            default:
+                exportStrategy = new ExportPlainTextStrategy();
                 break;
-            }
         }
 
+        exportStrategy.export(this);
     } 
 }
