@@ -3,6 +3,13 @@ package opdrachten.Domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import opdrachten.States.CancelledState;
+import opdrachten.States.CreatedState;
+import opdrachten.States.FinishedState;
+import opdrachten.States.PaidState;
+import opdrachten.States.ProvisionalState;
+import opdrachten.States.State;
+import opdrachten.States.SubmittedState;
 import opdrachten.Strategies.CalculatePriceStrategy;
 import opdrachten.Strategies.ExportJSONStrategy;
 import opdrachten.Strategies.ExportPlainTextStrategy;
@@ -17,11 +24,35 @@ public class Order {
     private boolean isStudentOrder;
     private CalculatePriceStrategy priceStrategy;
 
+    /* states */
+    private State state;
+    private State paidState;
+    private State provisionalState;
+    private State submittedState;
+    private State createdState;
+    private State canceledState;
+    private State finishedState;
+
 
     public Order(int orderNr, boolean isStudentOrder) {
         this.orderNr = orderNr;
         this.isStudentOrder = isStudentOrder;
         this.seatReservations = new ArrayList<MovieTicket>();
+
+        this.paidState = new PaidState(this);
+        this.provisionalState = new ProvisionalState(this);
+        this.submittedState = new SubmittedState(this);
+        this.createdState = new CreatedState(this);
+        this.canceledState = new CancelledState();
+        this.finishedState = new FinishedState();
+    }
+
+    public State getState() {
+        return this.state;
+    }
+
+    public void setState(State newState) {
+        this.state = newState;
     }
 
     public int getOrderNr() {
@@ -80,4 +111,55 @@ public class Order {
 
         exportStrategy.export(this);
     } 
+
+    public State getCreatedState(){
+        return this.createdState;
+    }
+
+    public State getCancelledState(){
+        return this.canceledState;
+    }
+
+    public State getPaidState(){
+        return this.paidState;
+    }
+
+    public State getProvisionalState(){
+        return this.provisionalState;
+    }
+
+    public State getFinishedState(){
+        return this.finishedState;
+    }
+
+    public State getSubmittedState(){
+        return this.submittedState;
+    }
+
+    public void submit() {
+        this.state.submit();
+        
+    }
+
+    public void addTicket(MovieTicket ticket) {
+        this.state.addTicket(ticket);
+        
+    }
+
+    public void cancel() {
+        this.state.cancel();
+    }
+
+    public void pay() {
+        this.state.pay();
+    }
+
+    public void send() {
+        this.state.send();
+    }
+
+    public void remind() {
+        this.state.remind();
+    }
+
 }
