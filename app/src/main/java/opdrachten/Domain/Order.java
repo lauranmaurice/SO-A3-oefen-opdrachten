@@ -3,6 +3,8 @@ package opdrachten.Domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import opdrachten.Observer.Subject;
+import opdrachten.Observer.Subscriber;
 import opdrachten.States.CancelledState;
 import opdrachten.States.CreatedState;
 import opdrachten.States.FinishedState;
@@ -18,7 +20,8 @@ import opdrachten.Strategies.NotWeekendPriceStrategy;
 import opdrachten.Strategies.StudentPriceStrategy;
 import opdrachten.Strategies.WeekendPriceStrategy;
 
-public class Order {
+public class Order implements Subject{ 
+    private List<Subscriber> subscribers;
     private List<MovieTicket> seatReservations;
     private int orderNr;
     private boolean isStudentOrder;
@@ -38,6 +41,7 @@ public class Order {
         this.orderNr = orderNr;
         this.isStudentOrder = isStudentOrder;
         this.seatReservations = new ArrayList<MovieTicket>();
+        this.subscribers = new ArrayList<>();
 
         this.paidState = new PaidState(this);
         this.provisionalState = new ProvisionalState(this);
@@ -45,6 +49,8 @@ public class Order {
         this.createdState = new CreatedState(this);
         this.canceledState = new CancelledState();
         this.finishedState = new FinishedState();
+
+        this.setState(this.createdState);
     }
 
     public State getState() {
@@ -162,4 +168,21 @@ public class Order {
         this.state.remind();
     }
 
+    @Override
+    public void subscribe(Subscriber subscriber) {
+        this.subscribers.add(subscriber);
+    }
+
+    @Override
+    public void unsubscribe(Subscriber subscriber) {
+        this.subscribers.remove(subscriber);
+    }
+
+    @Override
+    public void notifySubscribers(String message) {
+        for (Subscriber subscriber : this.subscribers) {
+            subscriber.update(message);
+        }
+        
+    }
 }

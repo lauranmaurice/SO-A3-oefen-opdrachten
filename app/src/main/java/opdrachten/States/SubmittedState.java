@@ -25,14 +25,14 @@ public class SubmittedState implements State {
 	@Override
 	public void cancel() {
 		this.order.setState(this.order.getCancelledState());
-		System.out.println("Order is cancelled.");
+		this.order.notifySubscribers("Your order has been cancelled.");
 		
 	}
 
 	@Override
 	public void pay() {
 		this.order.setState(this.order.getPaidState());
-		System.out.println("Your order has been paid.");
+		this.order.notifySubscribers("Your order has been paid.");
 	}
 
 	@Override
@@ -44,6 +44,7 @@ public class SubmittedState implements State {
 	@Override
 	public void remind() {
 		this.order.setState(this.order.getProvisionalState());
+		this.order.notifySubscribers("PLEASE PAY YOUR ORDER!!!");
 		System.out.println("You have been reminded about your order.");
 	}
     

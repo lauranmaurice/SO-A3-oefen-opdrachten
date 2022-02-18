@@ -5,11 +5,14 @@ package opdrachten;
 
 import java.time.LocalDateTime;
 
+import opdrachten.Adapter.SmsAdapter;
+import opdrachten.Adapter.SmsMock;
 import opdrachten.Domain.Movie;
 import opdrachten.Domain.MovieScreening;
 import opdrachten.Domain.MovieTicket;
 import opdrachten.Domain.Order;
 import opdrachten.Domain.TicketExportFormat;
+import opdrachten.Observer.OrderSubscriber;
 
 public class App {
     public String getGreeting() {
@@ -29,8 +32,14 @@ public class App {
         order.addSeatReservation(ticketLauran);
         order.addSeatReservation(ticketRamon);
 
-        order.export(TicketExportFormat.JSON);
-        order.export(TicketExportFormat.PLAINTEXT);
+        SmsMock smsMock = new SmsMock();
+        SmsAdapter smsAdapter = new SmsAdapter(smsMock, "+31 6 81139297"); 
+
+        OrderSubscriber orderSubscriber = new OrderSubscriber(smsAdapter);
+        order.subscribe(orderSubscriber);
+        order.submit();
+        
+
     }
 
     public static void main(String[] args) {

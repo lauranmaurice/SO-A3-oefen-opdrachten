@@ -24,13 +24,13 @@ public class ProvisionalState implements State {
 	@Override
 	public void cancel() {
 		this.order.setState(this.order.getCancelledState());
-		System.out.println("Your order has been cancelled.");
+		this.order.notifySubscribers("Your order has been cancelled.");
 	}
 
 	@Override
 	public void pay() {
 		this.order.setState(this.order.getPaidState());
-		System.out.println("Your order has been paid.");
+		this.order.notifySubscribers("Your order has been paid");
 	}
 
 	@Override
