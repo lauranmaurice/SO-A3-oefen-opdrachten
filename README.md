@@ -14,6 +14,8 @@ Softwareontwerp &amp; Architectuur repository
 
 [Link naar het document over testen](https://docs.google.com/document/d/1ipOiiKJ4OSQ4RAkImfx7_rZLXBfCvyzOLUeoBroXERs/edit?usp=sharing)
 
-![Class diagram](https://drive.google.com/file/d/1j7-ofQz253zZKtrIXQ8v73IZoR_8RyW7/view?usp=sharing)
+[Class diagram opdracht 1](https://drive.google.com/file/d/1j7-ofQz253zZKtrIXQ8v73IZoR_8RyW7/view?usp=sharing)
 
 [Link naar diagram opdracht_4](https://drive.google.com/file/d/11c5xP23nMrHoR-UeNB_m3wUMSziGGeO9/view?usp=sharing)
+
+[Link naar diagram opdracht 5 (observer en adapter)](https://drive.google.com/file/d/1MD-5hz3gmLvKXajQ52A39UCSfpRUAUzQ/view?usp=sharing)

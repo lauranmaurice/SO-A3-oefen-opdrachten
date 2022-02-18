@@ -14,7 +14,7 @@ public class CreatedState implements State {
     @Override
     public void submit() {
         this.order.setState(this.order.getSubmittedState());
-        System.out.println("Your order is submitted");
+        this.order.notifySubscribers("Your order is submitted");
     }
 
     @Override
@@ -26,7 +26,7 @@ public class CreatedState implements State {
     @Override
     public void cancel() {
         this.order.setState(this.order.getCancelledState());
-        System.out.println("This order has been cancelled.");
+        this.order.notifySubscribers("Your order has been cancelled.");
     }
 
     @Override
