@@ -1,6 +1,6 @@
 package opdrachten.Adapter;
 
-public class WhatsappAdapter implements NotificationSender {
+public class WhatsappAdapter extends NotificationSender {
     private WhatsappMock whatsapp;
 
 	public WhatsappAdapter() {
@@ -11,5 +11,6 @@ public class WhatsappAdapter implements NotificationSender {
 	public void send(String message) {
 		whatsapp.sendWhatsapp(message, "06-12345678");
 	}
+
     
 }

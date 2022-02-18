@@ -26,7 +26,7 @@ public class OrderTests {
         MovieScreening movieScreening = new MovieScreening(movie, date, 20.00);
         MovieTicket ticketRuud = new MovieTicket(movieScreening, premium, 4, 12);
 
-        var order = new Order(1, student);
+        var order = new Order(1, student, null, null, null);
         order.addSeatReservation(ticketRuud);
 
         assertEquals(20.00, order.calculatePrice());
@@ -42,7 +42,7 @@ public class OrderTests {
         MovieScreening movieScreening = new MovieScreening(movie, date, 20.00);
         MovieTicket ticketDion = new MovieTicket(movieScreening, premium, 4, 12);
 
-        var order = new Order(1, student);
+        var order = new Order(1, student, null, null, null);
         order.addSeatReservation(ticketDion);
 
         assertEquals(23.00, order.calculatePrice());
@@ -59,7 +59,7 @@ public class OrderTests {
         MovieTicket ticketDion = new MovieTicket(movieScreening, premium, 4, 12);
         MovieTicket ticketRuud = new MovieTicket(movieScreening, premium, 4, 12);
         
-        var order = new Order(1, student);
+        var order = new Order(1, student, null, null, null);
         order.addSeatReservation(ticketDion);
         order.addSeatReservation(ticketRuud);
 
@@ -78,7 +78,7 @@ public class OrderTests {
         MovieTicket ticketRuud = new MovieTicket(movieScreening, premium, 4, 12);
         
         
-        var order = new Order(1, student);
+        var order = new Order(1, student, null, null, null);
         order.addSeatReservation(ticketDion);
         order.addSeatReservation(ticketRuud);
 
@@ -99,7 +99,7 @@ public class OrderTests {
         MovieScreening movieScreening = new MovieScreening(movie, date, 10.00);
         MovieTicket ticketRuud = new MovieTicket(movieScreening, premium, 4, 12);
 
-        var order = new Order(1, student);
+        var order = new Order(1, student, null, null, null);
         order.addSeatReservation(ticketRuud);
 
         assertEquals(10.00, order.calculatePrice());
@@ -115,7 +115,7 @@ public class OrderTests {
         MovieScreening movieScreening = new MovieScreening(movie, date, 10.00);
         MovieTicket ticketDion = new MovieTicket(movieScreening, premium, 4, 12);
 
-        var order = new Order(1, student);
+        var order = new Order(1, student,null, null, null);
         order.addSeatReservation(ticketDion);
 
         assertEquals(13.00, order.calculatePrice());
@@ -136,7 +136,7 @@ public class OrderTests {
         MovieTicket ticketAlexander = new MovieTicket(movieScreening, premium, 4, 12);
         MovieTicket ticketPascal = new MovieTicket(movieScreening, premium, 4, 12);
         
-        var order = new Order(1, student);
+        var order = new Order(1, student, null, null, null);
         order.addSeatReservation(ticketDion);
         order.addSeatReservation(ticketRuud);
         order.addSeatReservation(ticketArno);
@@ -164,7 +164,7 @@ public class OrderTests {
         MovieTicket ticketRik = new MovieTicket(movieScreening, premium, 4, 12);
         
         
-        var order = new Order(1, student);
+        var order = new Order(1, student, null, null, null);
         order.addSeatReservation(ticketDion);
         order.addSeatReservation(ticketRuud);
         order.addSeatReservation(ticketArno);
@@ -190,7 +190,7 @@ public class OrderTests {
         MovieScreening movieScreening = new MovieScreening(movie, LocalDateTime.now(), 2.00);
         MovieTicket ticketRamon = new MovieTicket(movieScreening, premium, 4, 12);
 
-        var order = new Order(1, student);
+        var order = new Order(1, student, null, null, null);
         order.addSeatReservation(ticketRamon);
 
         assertEquals(2.00, order.calculatePrice());
@@ -205,7 +205,7 @@ public class OrderTests {
         MovieScreening movieScreening = new MovieScreening(movie, LocalDateTime.now(), 2.00);
         MovieTicket ticketRamon = new MovieTicket(movieScreening, premium, 4, 12);
 
-        var order = new Order(1, student);
+        var order = new Order(1, student, null, null, null);
         order.addSeatReservation(ticketRamon);
 
         assertEquals(4.00, order.calculatePrice());
@@ -225,7 +225,7 @@ public class OrderTests {
         MovieTicket ticketJulius = new MovieTicket(movieScreening, premium, 4, 12);
         MovieTicket ticketMartijn = new MovieTicket(movieScreening, premium, 4, 12);
         
-        var order = new Order(1, student);
+        var order = new Order(1, student,null, null, null);
         order.addSeatReservation(ticketRamon);
         order.addSeatReservation(ticketLauran);
         order.addSeatReservation(ticketAart);
@@ -251,7 +251,7 @@ public class OrderTests {
         MovieTicket ticketMartijn = new MovieTicket(movieScreening, premium, 4, 12);
         MovieTicket ticketNiels = new MovieTicket(movieScreening, premium, 4, 12);
         
-        var order = new Order(1, student);
+        var order = new Order(1, student,null, null, null);
         order.addSeatReservation(ticketRamon);
         order.addSeatReservation(ticketLauran);
         order.addSeatReservation(ticketAart);

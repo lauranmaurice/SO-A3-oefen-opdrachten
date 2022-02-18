@@ -1,6 +1,6 @@
 package opdrachten.Adapter;
 
-public class SmsAdapter implements NotificationSender{
+public class SmsAdapter extends NotificationSender{
     private SmsMock smsSender; 
     private String phoneNumber;
 

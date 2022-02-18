@@ -22,7 +22,7 @@ public class ProvisionalStateTests {
 
     @BeforeAll
     public static void prepare() {
-        order = new Order(1, true);
+        order = new Order(1, true,null, null, null);
         movie = new Movie("Dragonheart.");
         movieScreening = new MovieScreening(movie, LocalDateTime.now(), 1.00);
         ticket = new MovieTicket(movieScreening, false, 1, 1);

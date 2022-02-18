@@ -1,6 +1,7 @@
 package opdrachten.Observer;
 
 import opdrachten.Adapter.NotificationSender;
+import opdrachten.Domain.Order;
 
 public class OrderSubscriber implements Subscriber {
     private NotificationSender sender;
@@ -10,9 +11,8 @@ public class OrderSubscriber implements Subscriber {
 	}
 
 	@Override
-	public void update(String message) {
-		System.out.println(message);
-        sender.send(message);
+	public void update(Order order, String message) {
+        sender.sendMessage(order, message);
 	}
     
 }
