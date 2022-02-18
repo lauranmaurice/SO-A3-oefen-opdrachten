@@ -15,7 +15,7 @@ public class CancelledStateTests {
 
     @BeforeAll
     public static void prepare() {
-        order = new Order(1, true);
+        order = new Order(1, true, null, null, null);
     }
 
     @BeforeEach

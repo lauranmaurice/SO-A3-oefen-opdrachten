@@ -26,6 +26,10 @@ public class Order implements Subject{
     private int orderNr;
     private boolean isStudentOrder;
     private CalculatePriceStrategy priceStrategy;
+    private String name;
+    private String emailAdress;
+    private String phoneNumber;
+
 
     /* states */
     private State state;
@@ -37,9 +41,13 @@ public class Order implements Subject{
     private State finishedState;
 
 
-    public Order(int orderNr, boolean isStudentOrder) {
+    public Order(int orderNr, boolean isStudentOrder, String name, String emailAdress, String phoneNumber) {
         this.orderNr = orderNr;
         this.isStudentOrder = isStudentOrder;
+        this.name = name;
+        this.emailAdress = emailAdress;
+        this.phoneNumber = phoneNumber;
+
         this.seatReservations = new ArrayList<MovieTicket>();
         this.subscribers = new ArrayList<>();
 
@@ -51,6 +59,18 @@ public class Order implements Subject{
         this.finishedState = new FinishedState();
 
         this.setState(this.createdState);
+    }
+
+    public String getName(){
+        return this.name;
+    }
+
+    public String getContactInformation(){
+        if (this.emailAdress != null){
+            return this.emailAdress;
+        } else {
+            return this.phoneNumber;
+        } 
     }
 
     public State getState() {
@@ -181,7 +201,7 @@ public class Order implements Subject{
     @Override
     public void notifySubscribers(String message) {
         for (Subscriber subscriber : this.subscribers) {
-            subscriber.update(message);
+            subscriber.update(this, message);
         }
         
     }

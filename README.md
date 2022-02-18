@@ -8,6 +8,8 @@ Softwareontwerp &amp; Architectuur repository
 - Opdracht 2: `opdracht_2`
 - Opdracht 3: `opdracht_3`
 - Opdracht 4: `opdracht_4`
+- Opdracht 5: `opdracht_5`
+- Opdracht 6: `opdracht_6`
 
 ## Links
 [Link naar het document](https://docs.google.com/document/d/1Ynhhp8oELJZV1Pk7wOq85NChs4ZdDl8QZIt0omGXL9s/edit?usp=sharing)
@@ -19,3 +21,5 @@ Softwareontwerp &amp; Architectuur repository
 [Link naar diagram opdracht_4](https://drive.google.com/file/d/11c5xP23nMrHoR-UeNB_m3wUMSziGGeO9/view?usp=sharing)
 
 [Link naar diagram opdracht 5 (observer en adapter)](https://drive.google.com/file/d/1MD-5hz3gmLvKXajQ52A39UCSfpRUAUzQ/view?usp=sharing)
+
+[Link naar diagram opdracht 6](https://drive.google.com/file/d/1L2fO3yhHO0PEdr4Ji3HSHPJ_g9p_dbe8/view?usp=sharing)
