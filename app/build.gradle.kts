@@ -10,6 +10,7 @@ plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
     application
     id("org.sonarqube") version "3.3"
+    id("jacoco")
 }
 
 repositories {
@@ -42,3 +43,10 @@ sonarqube {
     property("sonar.host.url", "https://sonarcloud.io")
   }
 }
+
+jacocoTestReport {
+    reports {
+        xml.enabled true
+    }
+}
+test.finalizedBy jacocoTestReport
