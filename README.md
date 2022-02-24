@@ -10,6 +10,7 @@ Softwareontwerp &amp; Architectuur repository
 - Opdracht 4: `opdracht_4`
 - Opdracht 5: `opdracht_5`
 - Opdracht 6: `opdracht_6`
+- Opdracht 7: "bestaat niet"
 
 ## Links
 [Link naar het document](https://docs.google.com/document/d/1Ynhhp8oELJZV1Pk7wOq85NChs4ZdDl8QZIt0omGXL9s/edit?usp=sharing)
